@@ -1,0 +1,24 @@
+services:
+  # Web Service
+  - type: web
+    name: urban-country-store-dashboard
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        generateSecret: true
+      - key: GOOGLE_SHEETS_API_KEY
+        value: AIzaSyClW8qW40WGipybiOGRWhFOblRUCekQWEI
+      - key: NEXT_PUBLIC_GOOGLE_SHEETS_SPREADSHEET_ID
+        value: 1-4Y3UBvVaq-vgtRkU9BvXcmiWmcoRMYdjBX5kdjmWB4
+    disk:
+      name: data
+      mountPath: /app/db
+      sizeGB: 1
